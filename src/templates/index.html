@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blog in Django</title>
+</head>
+<body>
+<h1>{{title}} Page</h1>
+{% for obj in object_list %}
+{{ obj.id }}</br>
+{{ obj.title}}</br>
+{{ obj.content }}</br>
+{{ obj.timestamp }}</br>
+{{ obj.updated }}</br>
+{% endfor %}
+</body>
+</html>
