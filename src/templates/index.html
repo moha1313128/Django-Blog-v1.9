@@ -6,8 +6,7 @@
 <body>
 <h1>{{title}} Page</h1>
 {% for obj in object_list %}
-<!-- <a href='{% url "detail" id=obj.id %}'>{{ obj.title}}</a></br> --> 
-<!-- {% url "posts:detail" id=obj.id %} -->
+{% url "posts:detail" id=obj.id %}
 <a href='{{ obj.get_absolute_url }}'>{{ obj.title}}</a></br>
 {{ obj.content }}</br>
 {{ obj.timestamp }}</br>

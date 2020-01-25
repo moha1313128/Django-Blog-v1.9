@@ -1,10 +1,24 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-
+from .forms import PostForm
 from .models import Post
 
 def post_create(request):
-	return HttpResponse("<h1>create</h1>")
+	form = PostForm(request.POST or None)
+	if form.is_valid():
+		instance = form.save(commit=False)
+		print (form.cleaned_data.get("title"))
+		instance.save()
+	# if request.method == "POST":
+		# print ("Title" + request.POST.get("title"))
+		# print ("Content" + request.POST.get("content"))
+		# title = request.POST.get("title")
+		# Post.objects.create(title=title)
+	context = {
+		"form": form,
+	}
+	return render(request, "post_form.html", context)
+	# return HttpResponse("<h1>create</h1>")
 
 def post_detail(request, id=None):
 	# instance = Post.objects.get(id=90)
@@ -20,7 +34,7 @@ def post_list(request):
 	queryset = Post.objects.all()
 	context = {
 		"object_list": queryset,
-		"title": "public list"
+		"title": "list"
 	}
 
 
