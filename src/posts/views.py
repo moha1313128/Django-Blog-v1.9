@@ -9,7 +9,7 @@ def post_create(request):
 	if form.is_valid():
 		instance = form.save(commit=False)
 		instance.save()
-		messages.success(request, "Successfully Edited", extra_tags='html_safe')
+		messages.success(request, "Successfully Created", extra_tags='html_safe')
 		return HttpResponseRedirect(instance.get_absolute_url())
 			
 	context = {
@@ -48,7 +48,7 @@ def post_list(request):
 		"object_list": queryset,
 		"title": "list"
 	}
-	return render(request, "index.html", context)
+	return render(request, "post_list.html", context)
 
 def post_delete(request, id=None):
 	instance = get_object_or_404(Post, id=id)

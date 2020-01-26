@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Blog in Django</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
 <h1>{{title}} Page</h1>
 {% for obj in object_list %}
 {% url "posts:detail" id=obj.id %}
@@ -12,5 +8,4 @@
 {{ obj.timestamp }}</br>
 {{ obj.updated }}</br>
 {% endfor %}
-</body>
-</html>
+{% endblock content %}
