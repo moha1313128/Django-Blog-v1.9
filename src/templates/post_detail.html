@@ -10,7 +10,14 @@
 {% if instance.user.get_full_name %}
 <p>Author: {{ instance.user.get_full_name }}</p>
 {% endif %}
-<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
+
+{{ instance.content|linebreaks }}  <hr>
+
+<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
+<hr>
+<div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="525" data-numposts="5"></div>
+
+<!-- <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
 Facebook
 </a>
 <a href="https://twitter.com/home?status={{ instance.content|urlify }}%20{{ request.build_absolute_uri }}/">
@@ -19,10 +26,10 @@ Twitter
 <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ instance.title }}&summary={{ instance.content|urlify }}&source={{ request.build_absolute_uri }}">
 Linkedin
 </a>
-<a href="http://www.reddit.com/submit?url={{ request.build_absolute_uri }}&title={{ instance.title }}">Reddit</a>
+<a href="http://www.reddit.com/submit?url={{ request.build_absolute_uri }}&title={{ instance.title }}">Reddit</a> -->
 
-{{ instance.content|linebreaks }}</br>
-<p><a href="{{ obj.get_absolute_url }}" class="btn btn-danger" role="button">Delete</a></p>
+
+<!-- <p><a href="{{ obj.get_absolute_url }}" class="btn btn-danger" role="button">Delete</a></p> -->
 
 </div>
 {% endblock content %}
