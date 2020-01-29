@@ -1,3 +1,7 @@
+try:
+    from urllib import quote  # Python 2.X
+except ImportError:
+    from urllib.parse import quote  # Python 3.X
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -35,11 +39,13 @@ def post_update(request, id=None):
 	}
 	return render(request, "post_form.html", context)
 
-def post_detail(request, id=None):
-	instance = get_object_or_404(Post, id=id)
+def post_detail(request, slug):
+	instance = get_object_or_404(Post, slug=slug)
+	share_string = quote(instance.content)
 	context = {
 		"title": instance.title,
 		"instance": instance,
+		"share_string": share_string,
 	}
 	return render(request, "post_detail.html", context)
 
