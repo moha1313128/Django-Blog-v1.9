@@ -9,9 +9,14 @@ from .models import Post
 def post_create(request):
 	# if not request.user.is_staff or not request.user.is_superuser:
 	# 	raise Http404
+
+	# if not request.user.is_auhenticated:
+	# 	raise Http404
+
 	form = PostForm(request.POST or None, request.FILES or None)
 	if form.is_valid():
 		instance = form.save(commit=False)
+		instance.user = request.user 
 		instance.save()
 		messages.success(request, "Successfully Created", extra_tags='html_safe')
 		return HttpResponseRedirect(instance.get_absolute_url())
@@ -64,7 +69,7 @@ def post_list(request):
 
 	context = {
 		"object_list": queryset,
-		"title": "list",
+		"title": "List",
 		"page_request_var": page_request_var
 	}
 	return render(request, "post_list.html", context)
